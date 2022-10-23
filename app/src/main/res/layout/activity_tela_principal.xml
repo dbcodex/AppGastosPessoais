@@ -15,7 +15,7 @@
         android:src="@drawable/money_blue_cat_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonDeslogar"
+        app:layout_constraintTop_toBottomOf="@id/btDeslogar"
     />
 
     <View
@@ -55,12 +55,10 @@
         android:id="@+id/textNomeUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text="asijfsiodgj"
+        android:text=""
         android:textColor="@color/SteelBlue"
         android:textSize="20sp"
         android:textStyle="bold"
-
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintTop_toTopOf="@id/iconeUser"
@@ -82,12 +80,10 @@
         android:id="@+id/textEmailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text="emaosiahsaihf"
+        android:text=""
         android:textColor="@color/SteelBlue"
         android:textSize="20sp"
         android:textStyle="bold"
-
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintTop_toTopOf="@id/iconeEmail"
@@ -95,7 +91,7 @@
         />
 
     <Button
-        android:id="@+id/buttonDeslogar"
+        android:id="@+id/btDeslogar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Deslogar"
