@@ -3,13 +3,16 @@ package com.aps.despesaspessoais;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,6 +35,8 @@ public class FormCadastro extends AppCompatActivity {
 
     private EditText edit_nome,edit_email,edit_senha;
     private Button bt_cadastrar;
+    private ProgressBar progressBar;
+
     String[] mensagens = {"Preencha todos os campos","Cadastro realizado com sucesso"};
     String usuarioID;
 
@@ -76,6 +81,14 @@ public class FormCadastro extends AppCompatActivity {
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
                     snackbar.show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            FormLogin();
+                        }
+                    },2000);
+
                 }else{
                     String erro;
                     try {
@@ -124,12 +137,18 @@ public class FormCadastro extends AppCompatActivity {
         });
     }
 
+    private void FormLogin(){
+        Intent intent = new Intent(FormCadastro.this,FormLogin.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void IniciarComponentes(){
 
         edit_nome = findViewById(R.id.edit_nome);
         edit_email = findViewById(R.id.edit_email);
         edit_senha = findViewById(R.id.edit_senha);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
-
+        progressBar = findViewById(R.id.progress_bar);
     }
 }
