@@ -1,7 +1,9 @@
 package com.aps.despesaspessoais;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -76,6 +78,7 @@ public class FormCadastro extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     SalvarDadosUsuario();
+                    salvarLocal(view);
 
                     Snackbar snackbar = Snackbar.make(view,mensagens[1],Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
@@ -150,5 +153,27 @@ public class FormCadastro extends AppCompatActivity {
         edit_senha = findViewById(R.id.edit_senha);
         bt_cadastrar = findViewById(R.id.bt_cadastrar);
         progressBar = findViewById(R.id.progress_bar);
+    }
+
+    public void salvarLocal(View view){
+        String nome = edit_nome.getText().toString();
+        String email = edit_email.getText().toString();
+
+        Cadastro cadastro = new Cadastro();
+        cadastro.nome = nome;
+        cadastro.email = email;
+
+        try {
+            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Cadastro").build();
+            CadastroDAO dao = db.pessoaDAO();
+            dao.insert(cadastro);
+
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("Salvo localmente.");
+//            builder.create().show();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
