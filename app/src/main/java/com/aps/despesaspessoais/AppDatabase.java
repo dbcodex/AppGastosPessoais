@@ -6,5 +6,5 @@ import androidx.room.RoomDatabase;
 
 @Database(entities = {Cadastro.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract CadastroDAO pessoaDAO();
+    public abstract CadastroDAO cadastroDAO();
 }

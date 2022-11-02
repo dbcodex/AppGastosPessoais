@@ -2,11 +2,14 @@ package com.aps.despesaspessoais;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TelaPrincipal extends AppCompatActivity {
 
@@ -55,12 +59,38 @@ public class TelaPrincipal extends AppCompatActivity {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                if (documentSnapshot != null){
+                if (documentSnapshot != null) {
                     nomeUsuario.setText(documentSnapshot.getString("nome"));
                     emailUsuario.setText(email);
                 }
             }
         });
+//Carregar as informacoes :)
+        LinearLayout listDespesas = findViewById(R.id.listDespesas);
+        listDespesas.removeAllViews();
+
+        new Thread(new Runnable(
+        ) {
+            @Override
+            public void run() {
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Cadastro").build();
+                CadastroDAO dao = db.cadastroDAO();
+
+                List<Cadastro> cadastros = dao.getAll();
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (Cadastro p:cadastros){
+                            TextView textView = new TextView(TelaPrincipal.this);
+                            textView.setText(p.nome);
+
+                            listDespesas.addView(textView);
+                        }
+                    }
+                });
+            }
+        }).start();
     }
 
     private void IniciarComponentes(){
@@ -68,4 +98,33 @@ public class TelaPrincipal extends AppCompatActivity {
         emailUsuario = findViewById(R.id.textEmailUser);
         btDeslogar = findViewById(R.id.btDeslogar);
     }
+
+    public void listDespesas(View view) {
+        LinearLayout listDespesas = findViewById(R.id.listDespesas);
+        listDespesas.removeAllViews();
+
+        new Thread(new Runnable(
+        ) {
+            @Override
+            public void run() {
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Cadastro").build();
+                CadastroDAO dao = db.cadastroDAO();
+
+                List<Cadastro> cadastros = dao.getAll();
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (Cadastro p:cadastros){
+                            TextView textView = new TextView(TelaPrincipal.this);
+                            textView.setText(p.nome);
+
+                            listDespesas.addView(textView);
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
 }

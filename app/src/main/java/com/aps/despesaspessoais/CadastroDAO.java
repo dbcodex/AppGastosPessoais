@@ -20,7 +20,7 @@ public interface CadastroDAO {
 //    Cadastro findByName(String first, String last);
 
     @Insert
-    void insert(Cadastro... users);
+    void insert(Cadastro... user);
 
     @Delete
     void delete(Cadastro user);

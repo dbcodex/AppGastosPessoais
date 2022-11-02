@@ -164,13 +164,23 @@ public class FormCadastro extends AppCompatActivity {
         cadastro.email = email;
 
         try {
-            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Cadastro").build();
-            CadastroDAO dao = db.pessoaDAO();
-            dao.insert(cadastro);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Cadastro").build();
+                    CadastroDAO dao = db.cadastroDAO();
+                    dao.insert(cadastro);
+                }
+            }).start();
 
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setMessage("Salvo localmente.");
-//            builder.create().show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FormCadastro.this);
+                    builder.setMessage("Salvo localmente.");
+                    builder.create().show();
+                }
+            });
 
         } catch (Exception e){
             e.printStackTrace();
