@@ -81,11 +81,13 @@ public class TelaPrincipal extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        String msg;
                         for (Cadastro p:cadastros){
-                            TextView textView = new TextView(TelaPrincipal.this);
-                            textView.setText(p.nome);
+                            TextView textViewT = new TextView(TelaPrincipal.this);
+                            msg = p.nome + " - " + p.email;
+                            textViewT.setText(msg);
 
-                            listDespesas.addView(textView);
+                            listDespesas.addView(textViewT);
                         }
                     }
                 });
@@ -115,11 +117,13 @@ public class TelaPrincipal extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        String msg;
                         for (Cadastro p:cadastros){
-                            TextView textView = new TextView(TelaPrincipal.this);
-                            textView.setText(p.nome);
+                            TextView textViewT = new TextView(TelaPrincipal.this);
+                            msg = p.nome + " - " + p.email;
+                            textViewT.setText(msg);
 
-                            listDespesas.addView(textView);
+                            listDespesas.addView(textViewT);
                         }
                     }
                 });
