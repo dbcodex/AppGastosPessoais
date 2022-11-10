@@ -71,18 +71,23 @@ public class TelaPrincipal extends AppCompatActivity {
 
         new Thread(new Runnable(
         ) {
+            //String usuarioID;
             @Override
             public void run() {
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Cadastro").build();
                 CadastroDAO dao = db.cadastroDAO();
 
-                List<Cadastro> cadastros = dao.getAll();
+                //FirebaseFirestore dbFb = FirebaseFirestore.getInstance();
+                //usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+
+                List<Cadastro> cadastro = dao.getByChaveFirebase(usuarioID.toString());
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String msg;
-                        for (Cadastro p:cadastros){
+
+                        for (Cadastro p:cadastro){
                             TextView textViewT = new TextView(TelaPrincipal.this);
                             msg = p.nome + " - " + p.email;
                             textViewT.setText(msg);
@@ -120,7 +125,7 @@ public class TelaPrincipal extends AppCompatActivity {
                         String msg;
                         for (Cadastro p:cadastros){
                             TextView textViewT = new TextView(TelaPrincipal.this);
-                            msg = p.nome + " - " + p.email;
+                            msg = p.id + " - " + p.chaveFirebase + " - " + p.nome + " - " + p.email;
                             textViewT.setText(msg);
 
                             listDespesas.addView(textViewT);

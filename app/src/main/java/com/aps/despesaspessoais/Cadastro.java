@@ -10,6 +10,9 @@ public class Cadastro {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
+    @ColumnInfo(name = "chaveFirebase")
+    public String chaveFirebase;
+
     @ColumnInfo(name = "nome")
     public String nome;
 

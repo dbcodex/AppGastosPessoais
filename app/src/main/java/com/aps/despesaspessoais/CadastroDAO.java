@@ -13,8 +13,8 @@ public interface CadastroDAO {
     @Query("SELECT * FROM cadastro")
     List<Cadastro> getAll();
 
-//    @Query("SELECT * FROM Cadastro WHERE id IN (:userIds)")
-//    List<Cadastro> loadAllByIds(int[] userIds);
+    @Query("SELECT * FROM Cadastro WHERE chaveFirebase=:chaveFirebase")
+    List<Cadastro> getByChaveFirebase (String chaveFirebase);
 //
 //    @Query("SELECT * FROM Cadastro WHERE nome LIKE :first LIMIT 1")
 //    Cadastro findByName(String first, String last);

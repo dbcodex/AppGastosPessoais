@@ -156,10 +156,12 @@ public class FormCadastro extends AppCompatActivity {
     }
 
     public void salvarLocal(View view){
+        String chaveFirebase = usuarioID;
         String nome = edit_nome.getText().toString();
         String email = edit_email.getText().toString();
 
         Cadastro cadastro = new Cadastro();
+        cadastro.chaveFirebase = chaveFirebase;
         cadastro.nome = nome;
         cadastro.email = email;
 
