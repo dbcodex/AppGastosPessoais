@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,13 +18,12 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TelaPrincipal extends AppCompatActivity {
 
     private TextView nomeUsuario,emailUsuario;
-    private Button btDeslogar;
+    private Button btDeslogar, btCadastrarDespesas;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String usuarioID;
@@ -45,6 +43,14 @@ public class TelaPrincipal extends AppCompatActivity {
                 Intent intent = new  Intent(TelaPrincipal.this,FormLogin.class);
                 startActivity((intent));
                 finish();
+            }
+        });
+
+        btCadastrarDespesas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TelaPrincipal.this, FormDespesas.class);
+                startActivity(intent);
             }
         });
     }
@@ -104,6 +110,7 @@ public class TelaPrincipal extends AppCompatActivity {
         nomeUsuario = findViewById(R.id.textNomeUser);
         emailUsuario = findViewById(R.id.textEmailUser);
         btDeslogar = findViewById(R.id.btDeslogar);
+        btCadastrarDespesas = findViewById(R.id.btCadastrarDespesas);
     }
 
     public void listDespesas(View view) {

@@ -3,4 +3,5 @@
     <string name="entrar">Entrar</string>
     <string name="text_cadastro">Clique aqui para criar uma conta</string>
     <string name="title_cadastro">Cadastre-se</string>
+    <string name="title_despesas">Cadastrar despesas</string>
 </resources>

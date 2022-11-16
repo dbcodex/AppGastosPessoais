@@ -12,7 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/money_blue_cat_logo"
-        android:layout_margin="30dp"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -67,29 +67,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/DodgerBlue"
-        android:padding="10dp"
         android:text="Deslogar"
         android:textColor="@color/Snow"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginRight="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/listDespesas"
         app:layout_constraintBottom_toBottomOf="@id/logo" />
 
-    <Button
-        android:id="@+id/btCarregar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:backgroundTint="@color/DodgerBlue"
-        android:onClick="listDespesas"
-        android:padding="10dp"
-        android:text="Carregar"
-        android:textColor="@color/Snow"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/logo"
-        app:layout_constraintEnd_toStartOf="@id/btDeslogar" />
+<!--    <Button-->
+<!--        android:id="@+id/btCarregar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:backgroundTint="@color/DodgerBlue"-->
+<!--        android:onClick="listDespesas"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Carregar"-->
+<!--        android:textColor="@color/Snow"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/logo"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/btDeslogar" />-->
 
     <LinearLayout
         android:id="@+id/listDespesas"
@@ -105,4 +102,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iconeEmail" />
 
+    <!-- Inserir android:onClick="btCadastrarDespesas"  -->
+    <Button
+        android:id="@+id/btCadastrarDespesas"
+        style="@style/ButtonDespesas"
+        android:text="+"
+
+        app:layout_constraintTop_toBottomOf="@id/listDespesas"
+        app:layout_constraintEnd_toEndOf="@id/listDespesas" />
 </androidx.constraintlayout.widget.ConstraintLayout>
